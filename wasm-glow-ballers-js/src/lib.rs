@@ -1,6 +1,7 @@
 use wasm_bindgen::prelude::*;
+use wasm_glow_ballers_lib::mapping;
 
 #[wasm_bindgen]
-pub fn add(a: i32, b: i32) -> i32 {
-    a + b
+pub fn analyse(target: Vec<u8>) -> JsValue {
+    serde_wasm_bindgen::to_value(&mapping(&target)).unwrap()
 }
