@@ -1,7 +1,9 @@
-[package]
-name = "wasm-glow-ballers"
-version = "0.1.0"
-edition = "2024"
+[workspace]
 
-[dependencies]
-walrus = "0.23.3"
+resolver = "2"
+members = [
+    # Core lib
+    "wasm-glow-ballers-lib",
+    # JS-exported library
+    "wasm-glow-ballers-js",
+]

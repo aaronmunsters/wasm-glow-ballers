@@ -1,0 +1,8 @@
+[package]
+name = "wasm-glow-ballers-js"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+wasm-glow-ballers-lib = { path = "../wasm-glow-ballers-lib" }
+wasm-bindgen = "0.2.100"
