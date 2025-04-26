@@ -1,7 +1,8 @@
 # Wasm Glow Ballers
 
-**Wasm Glow Ballers** is a tool that retrieves a mapping of all global exports from a WebAssembly module.
-The output is a `Map` where keys are the names of the exports and values are the indices of the exported globals.
+**Wasm Glow Ballers** is a tool that retrieves a mapping of all global exports and imports from a WebAssembly module.
+The output is a `Map` where keys are the names of the globals and values are the indices of the exported/imported globals.
+Note that the imported globals are prefixed with their module name as `module_name::global_name`.
 
 ## Example usage:
 
