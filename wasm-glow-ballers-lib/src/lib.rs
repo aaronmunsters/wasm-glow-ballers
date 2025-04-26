@@ -5,6 +5,7 @@ use std::collections::HashMap;
 use error::Error;
 use walrus::Module;
 
+#[derive(Debug, PartialEq, Eq, Hash, Copy, Clone)]
 pub enum MappingItemType {
     Global,
     Function,
@@ -20,7 +21,7 @@ pub enum MappingItemType {
 // Creates a mapping of all exported and imported items of the specified type
 pub fn mapping_with_type(
     wasm: &[u8],
-    item_type: MappingItemType,
+    item_type: &MappingItemType,
 ) -> Result<HashMap<String, usize>, Error> {
     let module = Module::from_buffer(wasm).map_err(|_| Error::ParsingFailed)?;
     let mut result = HashMap::new();
@@ -39,7 +40,7 @@ pub fn mapping_with_type(
 // Creates a mapping of only exported items of the specified type from raw WASM bytes
 pub fn mapping_exports_with_type(
     wasm: &[u8],
-    item_type: MappingItemType,
+    item_type: &MappingItemType,
 ) -> Result<HashMap<String, usize>, Error> {
     let module = Module::from_buffer(wasm).map_err(|_| Error::ParsingFailed)?;
     mapping_exports_with_type_and_module(&module, &item_type)
@@ -48,7 +49,7 @@ pub fn mapping_exports_with_type(
 // Creates a mapping of only imported items of the specified type from raw WASM bytes
 pub fn mapping_imports_with_type(
     wasm: &[u8],
-    item_type: MappingItemType,
+    item_type: &MappingItemType,
 ) -> Result<HashMap<String, usize>, Error> {
     let module = Module::from_buffer(wasm).map_err(|_| Error::ParsingFailed)?;
     mapping_imports_with_type_and_module(&module, &item_type)
