@@ -14,7 +14,7 @@ cd wasm-glow-ballers/wasm-glow-ballers-js/
 # Package a NodeJS library
 wasm-pack build --target nodejs # [1]
 # Use the NodeJS library to log the mapping where the target is the library itself
-node -e 'console.log(require("./pkg").analyse(require("fs").readFileSync("./pkg/wasm_glow_ballers_js_bg.wasm")))' # [2]
+node -e 'console.log(require("./pkg").analyse(require("fs").readFileSync("../demo/demo.wasm")))' # [2]
 ```
 
 Which then outputs `Map(0) {}`.
