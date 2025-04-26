@@ -13,8 +13,12 @@ git clone https://github.com/aaronmunsters/wasm-glow-ballers
 cd wasm-glow-ballers/wasm-glow-ballers-js/
 # Package a NodeJS library
 wasm-pack build --target nodejs # [1]
+# `cd` into the demo folder
+cd ../demo/
+# Generate the WASM binary
+wat2wasm demo.wat --output demo.wasm --enable-multi-memory # [2]
 # Use the NodeJS library to log the mapping where the target is the library itself
-node -e 'console.log(require("./pkg").analyse(require("fs").readFileSync("../demo/demo.wasm")))' # [2]
+node demo.cjs # [3]
 ```
 
 Which then outputs:
@@ -45,4 +49,5 @@ Table:
 ```
 
 - `[1]`: Tested using [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/) (version 0.13.0)
-- `[2]`: Running on [NodeJS](https://nodejs.org/en) (version 22)
+- `[2]`: Tested using [wat2wasm](https://github.com/WebAssembly/wabt) (version 1.0.36)
+- `[3]`: Running on [NodeJS](https://nodejs.org/en) (version 22)
