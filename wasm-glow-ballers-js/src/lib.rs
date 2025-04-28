@@ -25,21 +25,18 @@ impl From<JsMappingItemType> for MappingItemType {
 
 #[wasm_bindgen]
 pub fn analyse(target: Vec<u8>, item_type: JsMappingItemType) -> Result<JsValue, JsError> {
-    let rust_item_type: MappingItemType = item_type.into();
-    let map = mapping_with_type(&target, &rust_item_type).map_err(JsError::from)?;
+    let map = mapping_with_type(&target, &item_type.into()).map_err(JsError::from)?;
     Ok(serde_wasm_bindgen::to_value(&map)?)
 }
 
 #[wasm_bindgen]
 pub fn analyse_exports(target: Vec<u8>, item_type: JsMappingItemType) -> Result<JsValue, JsError> {
-    let rust_item_type: MappingItemType = item_type.into();
-    let map = mapping_exports_with_type(&target, &rust_item_type).map_err(JsError::from)?;
+    let map = mapping_exports_with_type(&target, &item_type.into()).map_err(JsError::from)?;
     Ok(serde_wasm_bindgen::to_value(&map)?)
 }
 
 #[wasm_bindgen]
 pub fn analyse_imports(target: Vec<u8>, item_type: JsMappingItemType) -> Result<JsValue, JsError> {
-    let rust_item_type: MappingItemType = item_type.into();
-    let map = mapping_imports_with_type(&target, &rust_item_type).map_err(JsError::from)?;
+    let map = mapping_imports_with_type(&target, &item_type.into()).map_err(JsError::from)?;
     Ok(serde_wasm_bindgen::to_value(&map)?)
 }

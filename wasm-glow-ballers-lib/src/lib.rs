@@ -27,11 +27,11 @@ pub fn mapping_with_type(
     let mut result = HashMap::new();
 
     // Add exports
-    let exports = mapping_exports_with_type_and_module(&module, &item_type)?;
+    let exports = mapping_exports_with_type_and_module(&module, item_type)?;
     result.extend(exports);
 
     // Add imports
-    let imports = mapping_imports_with_type_and_module(&module, &item_type)?;
+    let imports = mapping_imports_with_type_and_module(&module, item_type)?;
     result.extend(imports);
 
     Ok(result)
@@ -43,7 +43,7 @@ pub fn mapping_exports_with_type(
     item_type: &MappingItemType,
 ) -> Result<HashMap<String, usize>, Error> {
     let module = Module::from_buffer(wasm).map_err(|_| Error::ParsingFailed)?;
-    mapping_exports_with_type_and_module(&module, &item_type)
+    mapping_exports_with_type_and_module(&module, item_type)
 }
 
 // Creates a mapping of only imported items of the specified type from raw WASM bytes
@@ -52,7 +52,7 @@ pub fn mapping_imports_with_type(
     item_type: &MappingItemType,
 ) -> Result<HashMap<String, usize>, Error> {
     let module = Module::from_buffer(wasm).map_err(|_| Error::ParsingFailed)?;
-    mapping_imports_with_type_and_module(&module, &item_type)
+    mapping_imports_with_type_and_module(&module, item_type)
 }
 
 // Creates a mapping of exported items of the specified type from a parsed Module
